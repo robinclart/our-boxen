@@ -6,16 +6,10 @@ class people::robinclart {
   include skype
   include zsh
 
-  git::config::global { 'user.name':
-    value => 'Robin Clart'
-  }
-
-  git::config::global { 'user.email':
-    value => 'robin@clart.be'
-  }
-
-  git::config::global { 'core.editor':
-    value => 'mate -w'
+  git::config::global {
+    'core.editor': value => 'mate -w' ;
+    'user.name':   value => 'Robin Clart' ;
+    'user.email':  value => 'robin@clart.be' ;
   }
 
   include projects::all
