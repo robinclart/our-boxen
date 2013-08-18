@@ -14,16 +14,16 @@ class people::robinclart {
 
   include projects::all
 
-  $home = "/Users/${::luser}"
+  $home = "/Users/${::boxen_user}"
 
-  repository { 'robbyrussell_oh-my-zsh':
-    source => 'robbyrussell/oh-my-zsh',
+  repository { 'robinclart_ohmyzsh':
+    source => 'robinclart/oh-my-zsh',
     path   => "${home}/.oh-my-zsh",
   }
 
   file { "${home}/.zshrc":
     ensure  => 'link',
     target  => "${home}/.oh-my-zsh/templates/zshrc",
-    require => Repository['robbyrussell_oh-my-zsh']
+    require => Repository['robinclart_ohmyzsh']
   }
 }
