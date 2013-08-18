@@ -88,4 +88,9 @@ node default {
     ensure => link,
     target => $boxen::config::repodir
   }
+
+  # Set the global default ruby (auto-installs it if it can)
+  class { 'ruby::global':
+    version => '2.0.0'
+  }
 }

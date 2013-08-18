@@ -36,3 +36,16 @@ github "xquartz",    "1.1.0"
 
 # Optional/custom modules. There are tons available at
 # https://github.com/boxen.
+
+github "osx",         "1.6.0"
+github "textmate",    "1.1.0"
+github "dropbox",     "1.1.1"
+github "alfred",      "1.1.2"
+github "things",      "1.0.1"
+github "sysctl",      "1.0.0"
+github "postgresql",  "2.0.0"
+github "imagemagick", "1.2.1"
+github "heroku",      "2.0.0"
+github "java",        "1.1.2"
+github "solr",        "1.0.3"
+github "zsh",         "1.0.0"
