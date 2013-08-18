@@ -3,7 +3,20 @@ class people::robinclart {
   include dropbox
   include alfred
   include things
+  include skype
   include zsh
+
+  git::config::global { 'user.name':
+    value => 'Robin Clart'
+  }
+
+  git::config::global { 'user.email':
+    value => 'robin@clart.be'
+  }
+
+  git::config::global { 'core.editor':
+    value => 'mate -w'
+  }
 
   include projects::all
 
