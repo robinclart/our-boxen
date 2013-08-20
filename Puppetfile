@@ -10,6 +10,10 @@ def github(name, version, options = nil)
   mod name, version, :github_tarball => options[:repo]
 end
 
+def robinclart(name, version, options = nil)
+  github name, version, :repo => "robinclart/puppet-#{name}"
+end
+
 # Includes many of our custom types and providers, as well as global
 # config. Required.
 
@@ -52,3 +56,5 @@ github "zsh",         "1.0.0"
 github "skype",       "1.0.4"
 github "spotify",     "1.0.1"
 github "cyberduck",   "1.0.1"
+
+robinclart "forklift", "1.0.0"

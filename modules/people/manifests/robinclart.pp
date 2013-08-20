@@ -1,6 +1,7 @@
 class people::robinclart {
   include textmate
   include cyberduck
+  include forklift
   include dropbox
   include alfred
   include things

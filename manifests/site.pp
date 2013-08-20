@@ -93,4 +93,9 @@ node default {
   class { 'ruby::global':
     version => '2.0.0'
   }
+
+  ruby::gem { "middleman for 2.0.0":
+    gem     => 'middleman',
+    ruby    => '2.0.0'
+  }
 }
