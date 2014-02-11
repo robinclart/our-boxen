@@ -1,0 +1,45 @@
+upstream <%= @server_name %> {
+  server unix:<%= scope.lookupvar "boxen::config::socketdir" %>/<%= @name %>;
+}
+
+server {
+  access_log <%= scope.lookupvar "nginx::config::logdir" %>/<%= @name %>.access.log main;
+  listen 80;
+  root <%= @repo_dir %>/www;
+  server_name <%= @server_name %>;
+
+  client_max_body_size 50M;
+
+  error_page 500 502 503 504 /50x.html;
+
+  index index.php;
+
+  location = /favicon.ico {
+    log_not_found off;
+    access_log off;
+  }
+
+  location = /robots.txt {
+    allow all;
+    log_not_found off;
+    access_log off;
+  }
+
+  location / {
+    try_files $uri $uri/ /index.php?$args;
+  }
+
+  location ~ \.php$ {
+    include <%= scope.lookupvar "nginx::config::configdir" %>/fastcgi_params;
+    keepalive_timeout 0;
+    fastcgi_intercept_errors on;
+    fastcgi_pass <%= @server_name %>;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    fastcgi_param PATH_INFO $fastcgi_script_name;
+  }
+
+  location ~* \.(js|css|png|jpg|jpeg|gif|ico)$ {
+    expires max;
+    log_not_found off;
+  }
+}

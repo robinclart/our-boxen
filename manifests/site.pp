@@ -57,6 +57,7 @@ node default {
   include git
   include hub
   include nginx
+  include mysql
 
   # fail if FDE is not enabled
   if $::root_encrypted == 'no' {
@@ -75,6 +76,9 @@ node default {
   include ruby::1_9_3
   include ruby::2_0_0
 
+  # default php versions
+  include php::5_4
+
   # common, useful packages
   package {
     [
@@ -89,9 +93,31 @@ node default {
     target => $boxen::config::repodir
   }
 
+  class { 'nodejs::global':
+    version => 'v0.10'
+  }
+
+  nodejs::module { 'coffee-script':
+    node_version => 'v0.10'
+  }
+
   # Set the global default ruby (auto-installs it if it can)
   class { 'ruby::global':
     version => '2.0.0'
+  }
+
+  class { 'php::global':
+    version => '5.4'
+  }
+
+  ruby::gem { "foreman for 1.9.3":
+    gem     => 'foreman',
+    ruby    => '1.9.3'
+  }
+
+  ruby::gem { "foreman for 2.0.0":
+    gem     => 'foreman',
+    ruby    => '2.0.0'
   }
 
   ruby::gem { "middleman for 2.0.0":

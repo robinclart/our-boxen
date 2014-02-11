@@ -12,9 +12,4 @@ class projects::brubeck {
     ruby          => $brubeck_ruby_version,
     source        => 'siripong/brubeck'
   }
-
-  ruby::gem { "foreman for ${brubeck_ruby_version}":
-    gem     => 'foreman',
-    ruby    => $brubeck_ruby_version
-  }
 }
